@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Điện Thoại Giá Tốt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-box">
+    <div class="logo">📱 ĐiệnThoại PHÚC ANH</div>
+    <input class="search-box" placeholder="Bạn tìm gì hôm nay?">
+    <nav>
+      <a href="index.html">Trang chủ</a>
+
+      <div class="cart">
+         Giỏ hàng (<span id="cart-count">0</span>)
+
+        <div id="cart-dropdown" class="cart-dropdown hidden">
+          <div id="cart-items"></div>
+
+          <div class="cart-actions">
+            <button onclick="checkout()">Mua</button>
+            <button onclick="clearCart()">Hủy</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div id="user-area"></div>
+  </div>
+</header>
+
+<section class="banner-slider">
+  <div class="slides">
+    <img src="./banner/17pro.jpg" class="slide active">
+    <img src="./banner/galaxy.jpg" class="slide">
+    <img src="./banner/reno.jpg" class="slide">
+    <img src="./banner/samtetsom.jpg" class="slide">
+  </div>
+  <button class="nav prev" onclick="prevSlide()">‹</button>
+  <button class="nav next" onclick="nextSlide()">›</button>
+</section>
+<div class="category">
+
+  <div class="cat-item" onclick="showBrand('phone')">📱 Điện thoại</div>
+  <div class="cat-item" onclick="showBrand('laptop')">💻 Laptop</div>
+  <div class="cat-item" onclick="showBrand('watch')">⌚ Đồng hồ</div>
+  <div class="cat-item" onclick="showBrand('accessory')">🎧 Phụ kiện</div>
+
+</div>
+
+<div class="brand-box hidden" id="brandBox"></div>
+
+
+<div class="container">
+ 
+
+  <div class="product-list" id="productList"></div>
+</div>
+<h2 class="section-title">🔥 Gian Hàng Ưu Đãi</h2>
+
+<div class="sub-banner">
+  <div class="sub-item">
+    <img src="./banner/doc1.jpg" alt="Banner 1">
+  </div>
+  <div class="sub-item">
+    <img src="./banner/doc2.jpg" alt="Banner 2">
+  </div>
+  <div class="sub-item">
+    <img src="./banner/doc3.jpg" alt="Banner 3">
+  </div>
+  <div class="sub-item">
+    <img src="./banner/doc4.jpg" alt="Banner 4">
+  </div>
+</div>
+<section id="aboutUs">
+      <h2>Về chúng tôi</h2>
+      <h2>Uy tín tạo nên thương hiệu</h2>
+      
+      <div class="content">
+          <p>Không chỉ là nơi mua sắm, ĐiệnThoại PHÚC ANH còn là điểm đến đáng tin cậy cho những ai yêu công nghệ. Chúng tôi mang đến những sản phẩm mới nhất, giá tốt nhất và dịch vụ tốt nhất, giúp bạn luôn bắt kịp xu hướng công nghệ hiện đại.</p>
+
+          <p>ĐiệnThoại PHÚC ANH là cửa hàng chuyên cung cấp các sản phẩm công nghệ chính hãng như điện thoại, laptop, đồng hồ thông minh và phụ kiện. Với phương châm ‘Uy tín – Chất lượng – Giá tốt’, chúng tôi luôn cam kết mang đến cho khách hàng những sản phẩm tốt nhất cùng dịch vụ tận tâm và chuyên nghiệp.</p>
+      </div>
+      <div class="about-us">
+        <div class="card-about">
+          <div class="card-glow-effect">
+            <img src="./img/TNP1.jpg" alt="something" class="card-img" />
+            <div class="card-content">
+              <h5 class="card-title">Trần Ngọc Phúc</h5>
+              <p class="card-text" style="color: #ef5518">Chủ Shop</p>
+            </div>
+
+            <svg class="card-glow-container">
+              <rect pathLength="100" stroke-linecap="round" class="card-glow-blur" />
+              <rect pathLength="100" stroke-linecap="round" class="card-glow-line" />
+            </svg>
+
+          </div>
+          <img src="./img/TNP2.png" alt="something" class="member" />
+          <a class="card-more-info" href="about.html"><i class="fa-solid fa-info"></i></a>
+        </div>
+
+
+        <div class="card-about">
+          <div class="card-glow-effect">
+            <img src="./img/NA1.jpg" alt="something" class="card-img" />
+            <div class="card-content">
+              <h5 class="card-title">Nguyễn Ngọc Anh</h5>
+              <p class="card-text" style="color: #ef5518">Chủ Shop</p>
+            </div>
+
+            <svg class="card-glow-container">
+              <rect pathLength="100" stroke-linecap="round" class="card-glow-blur" />
+              <rect pathLength="100" stroke-linecap="round" class="card-glow-line" />
+            </svg>
+
+          </div>
+          <img src="./img/NA2.png" alt="something" class="member" />
+        
+        </div>
+
+    </section>
+<footer class="cs-footer">
+  <div class="cs-container">
+
+    <div class="cs-col">
+      <h4>Tổng đài hỗ trợ</h4>
+      <p>Mua hàng: <b>1800.2097</b></p>
+      <p>Khiếu nại: <b>1800.2063</b></p>
+
+      <h4>Thanh toán</h4>
+      <img src="./img/apple-pay-og.jpg" width="50">
+      <img src="./img/momo_1.jpg" width="50">
+      <img src="./img/zalopay-logo.jpg" width="50">
+      <img src="./img/onepay-logo.jpg" width="50">
+    </div>
+
+    <div class="cs-col">
+      <h4>Thông tin & chính sách</h4>
+      <a href="#">Mua hàng Online</a>
+      <a href="#">Chính sách giao hàng</a>
+      <a href="#">Chính sách đổi trả</a>
+      <a href="#">Bảo hành</a>
+      <a href="#">VAT Refund</a>
+    </div>
+
+    <div class="cs-col">
+      <h4>Dịch vụ khác</h4>
+      <a href="#">Khách hàng doanh nghiệp</a>
+      <a href="#">Ưu đãi thanh toán</a>
+      <a href="#">Tuyển dụng</a>
+      <a href="#">Liên hệ hợp tác</a>
+    </div>
+
+    <div class="cs-col">
+      <h4>Tải App</h4>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://cellphones.com.vn">
+      <div>
+        <img src="./img/downloadANDROID.jpg" width="120">
+        <img src="./img/downloadiOS.jpg" width="120">
+      </div>
+    </div>
+
+  </div>
+
+   <div id="footer">
+      
+      <div class="footer-column">
+        <h4>Thông tin liên hệ</h4>
+        <p>Trường Trung Cấp Công Nghiệp Bình Dương </p>
+        <p>Hotline: 098 661 24 23</p>
+        <p>Hotline: 0986.612.423 (Thầy Hùng)</p>
+        <p>Hotline:0935.656.603 ( Thầy Quý)</p>
+        <p>Email: truongtccnbd@gmail.com</p>
+      </div>
+      <div class="footer-column">
+        <h4>Địa chỉ</h4>
+        <p>
+          Số 79, Đường DT743, P. Bình Hòa, Thuận An, Bình Dương, Vietnam</p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3764.791046204106!2d106.73750307485886!3d10.90041988925599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d83c1116183d%3A0xfa754495eeb43247!2zVHLGsOG7nW5nIFRydW5nIEPhuqVwIEPDtG5nIE5naGnhu4dwIELDrG5oIETGsMahbmc!5e1!3m2!1svi!2s!4v1741094119381!5m2!1svi!2s" width="450" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      <div class="footer-column">
+        <h4>Thông tin khác</h4>
+        <a href="https://www.facebook.com/bdi.edu.vn">
+          <i class="fa-brands fa-facebook"></i>
+          Facebook</a><br />
+        <a href="https://bdi.edu.vn/?fbclid=IwY2xjawIoAAhleHRuA2FlbQIxMAABHapqrRcUS7DnAcZPqhu7KzmWf8mVJkD7DBYmOAS-ISmL-ZQyyTJ1wI0RFw_aem_XNU5ZbO8kZHxQtO1iCEV9w">
+          <i class="fa-solid fa-earth-americas"></i>
+          Website</a><br />
+        
+      </div>
+    </div>
+</footer>
+<button id="backToTop">⬆</button>
+
+<script src="script.js"></script>
+</body>
+</html>

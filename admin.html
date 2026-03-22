@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Admin - Quản lý sản phẩm</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #f5f6fa;
+  color: #333;
+  padding: 20px;
+}
+
+
+h1 {
+  font-size: 28px;
+  color: #0a68ff;
+  margin-bottom: 15px;
+}
+
+a {
+  text-decoration: none;
+  color: #0a68ff;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+.add-btn {
+  margin: 15px 0;
+  padding: 10px 16px;
+  background: #0a68ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #0056b3;
+}
+
+
+.form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+  animation: fadeDown .25s ease;
+}
+
+.form input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.form button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  background: #0a68ff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background: #0056b3;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background: #0a68ff;
+  color: #fff;
+}
+
+td img {
+  width: 50px;
+  border-radius: 6px;
+}
+
+tr:hover {
+  background: #f1f3f6;
+}
+
+
+button.edit {
+  background: #f4b400;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+button.delete {
+  background: #e53935;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+
+.hidden {
+  display: none;
+}
+
+.menu{
+  display:flex;
+  gap:10px;
+  margin:20px 0;
+}
+
+.menu button{
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:#e9edf5;
+  color:#333;
+  font-weight:600;
+  cursor:pointer;
+  transition: all 0.25s ease;
+}
+
+/* hover */
+.menu button:hover{
+  background:#d6e4ff;
+  color:#0a68ff;
+}
+
+/* nút đang chọn */
+.menu button.active{
+  background:#0a68ff;
+  color:white;
+  box-shadow:0 4px 10px rgba(10,104,255,0.3);
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.modal-content{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  width:500px;
+  max-height:80%;
+  overflow-y:auto;
+  animation:fadeDown .3s ease;
+}
+
+.close{
+  float:right;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.modal.hidden{
+  display:none;
+}
+</style>
+</head>
+
+<body>
+<header class="header">
+  <div class="container header-box">
+    <a href="index.html"><div class="logo">📱 ĐiệnThoại PHÚC ANH</div></a>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="#">Giỏ hàng (<span id="cart-count">0</span>)</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+    <div id="user-area"></div>
+  </div>
+</header>
+<h1 id="form-title">Quản lý sản phẩm</h1>
+
+<div class="menu">
+  <button onclick="showPage('product')">Quản lý sản phẩm</button>
+  <button onclick="showPage('user')">Quản lý người dùng</button>
+</div>
+
+<br>
+<button class="add-btn" onclick="toggleForm(true)">➕ Thêm sản phẩm</button>
+
+
+<div class="form hidden" id="productForm">
+  <input id="id" placeholder="ID sản phẩm">
+  <input id="name" placeholder="Tên sản phẩm">
+  <input id="brand" placeholder="Hãng">
+  <input id="price" placeholder="Giá">
+  <input id="oldPrice" placeholder="Giá cũ (nếu có)">
+  <input id="image" type="file" accept="image/*">
+
+  <h4>Cấu hình kỹ thuật</h4>
+  <input id="screen" placeholder="Màn hình">
+  <input id="cpu" placeholder="Chip / CPU">
+  <input id="ram" placeholder="RAM">
+  <input id="storage" placeholder="Bộ nhớ trong">
+  <input id="battery" placeholder="Pin">
+
+  <button onclick="saveProduct()">💾 Lưu</button>
+</div>
+
+
+<div id="productPage">
+  
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Hãng</th>
+        <th>Giá</th>
+        <th>Đã bán</th>
+        <th>Ảnh</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody id="productTable"></tbody>
+  </table>
+</div>
+
+<!-- ===== USER ===== -->
+<div id="userPage" style="display:none;">
+  <h2>Quản lý người dùng</h2>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Tài khoản</th>
+        <th>Số đơn</th>
+        <th>Tổng tiền</th>
+        <th>Xem chi tiết</th>
+      </tr>
+    </thead>
+    <tbody id="userTable"></tbody>
+  </table>
+</div>
+
+<tbody id="userTable"></tbody>
+
+</table>
+<div id="orderModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <h3 id="modalTitle"></h3>
+    <div id="modalBody"></div>
+  </div>
+</div>
+<script src="admin.js"></script>
+</body>
+</html>

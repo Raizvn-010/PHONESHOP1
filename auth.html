@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng nhập / Đăng ký</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="container header-box">
+    <a href="index.html"><div class="logo">📱 ĐiệnThoại PHÚC ANH</div></a>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="#">Giỏ hàng (<span id="cart-count">0</span>)</a>
+      
+    </nav>
+    <div id="user-area"></div>
+  </div>
+</header>
+<div class="auth-box">
+  <div class="auth-tabs">
+    <button onclick="showLogin()">Đăng nhập</button>
+    <button onclick="showRegister()">Đăng ký</button>
+  </div>
+
+  
+  <div id="login-form" class="auth-form">
+    <input id="login-username" placeholder="Tên đăng nhập">
+    <input id="login-password" type="password" placeholder="Mật khẩu">
+    <button onclick="login()">Đăng nhập</button>
+  </div>
+
+ 
+  <div id="register-form" class="auth-form hidden">
+    <input id="reg-username" placeholder="Tên đăng nhập">
+    <input id="reg-password" type="password" placeholder="Mật khẩu">
+    <input id="reg-confirm" type="password" placeholder="Nhập lại mật khẩu">
+    <button onclick="register()">Đăng ký</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

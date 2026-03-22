@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Lịch sử mua hàng</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header class="header">
+  <div class="container header-box">
+    <div class="logo">📱 ĐiệnThoại PHÚC ANH</div>
+    <input class="search-box" placeholder="Bạn tìm gì hôm nay?">
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="#">Giỏ hàng (<span id="cart-count">0</span>)</a>
+      
+    </nav>
+    <div id="user-area"></div>
+  </div>
+</header>
+<h2>Lịch sử mua hàng</h2>
+
+<table border="1">
+<thead>
+<tr>
+<th>Ngày</th>
+<th>Sản phẩm</th>
+<th>Tổng tiền</th>
+<th>Mua lại</th>
+</tr>
+</thead>
+
+<tbody id="orderTable"></tbody>
+
+</table>
+<footer class="cs-footer">
+  <div class="cs-container">
+
+    <div class="cs-col">
+      <h4>Tổng đài hỗ trợ</h4>
+      <p>Mua hàng: <b>1800.2097</b></p>
+      <p>Khiếu nại: <b>1800.2063</b></p>
+
+      <h4>Thanh toán</h4>
+      <img src="./img/apple-pay-og.jpg" width="50">
+      <img src="./img/momo_1.jpg" width="50">
+      <img src="./img/zalopay-logo.jpg" width="50">
+      <img src="./img/onepay-logo.jpg" width="50">
+    </div>
+
+    <div class="cs-col">
+      <h4>Thông tin & chính sách</h4>
+      <a href="#">Mua hàng Online</a>
+      <a href="#">Chính sách giao hàng</a>
+      <a href="#">Chính sách đổi trả</a>
+      <a href="#">Bảo hành</a>
+      <a href="#">VAT Refund</a>
+    </div>
+
+    <div class="cs-col">
+      <h4>Dịch vụ khác</h4>
+      <a href="#">Khách hàng doanh nghiệp</a>
+      <a href="#">Ưu đãi thanh toán</a>
+      <a href="#">Tuyển dụng</a>
+      <a href="#">Liên hệ hợp tác</a>
+    </div>
+
+    <div class="cs-col">
+      <h4>Tải App</h4>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://cellphones.com.vn">
+      <div>
+        <img src="./img/downloadANDROID.jpg" width="120">
+        <img src="./img/downloadiOS.jpg" width="120">
+      </div>
+    </div>
+
+  </div>
+
+   <div id="footer">
+      
+      <div class="footer-column">
+        <h4>Thông tin liên hệ</h4>
+        <p>Trường Trung Cấp Công Nghiệp Bình Dương </p>
+        <p>Hotline: 098 661 24 23</p>
+        <p>Hotline: 0986.612.423 (Thầy Hùng)</p>
+        <p>Hotline:0935.656.603 ( Thầy Quý)</p>
+        <p>Email: truongtccnbd@gmail.com</p>
+      </div>
+      <div class="footer-column">
+        <h4>Địa chỉ</h4>
+        <p>
+          Số 79, Đường DT743, P. Bình Hòa, Thuận An, Bình Dương, Vietnam</p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3764.791046204106!2d106.73750307485886!3d10.90041988925599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d83c1116183d%3A0xfa754495eeb43247!2zVHLGsOG7nW5nIFRydW5nIEPhuqVwIEPDtG5nIE5naGnhu4dwIELDrG5oIETGsMahbmc!5e1!3m2!1svi!2s!4v1741094119381!5m2!1svi!2s" width="450" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      <div class="footer-column">
+        <h4>Thông tin khác</h4>
+        <a href="https://www.facebook.com/bdi.edu.vn">
+          <i class="fa-brands fa-facebook"></i>
+          Facebook</a><br />
+        <a href="https://bdi.edu.vn/?fbclid=IwY2xjawIoAAhleHRuA2FlbQIxMAABHapqrRcUS7DnAcZPqhu7KzmWf8mVJkD7DBYmOAS-ISmL-ZQyyTJ1wI0RFw_aem_XNU5ZbO8kZHxQtO1iCEV9w">
+          <i class="fa-solid fa-earth-americas"></i>
+          Website</a><br />
+        
+      </div>
+    </div>
+</footer>
+<script src="script.js"></script>
+
+<script>
+
+const user = localStorage.getItem("currentUser");
+const orders = JSON.parse(localStorage.getItem("orders")) || [];
+const products = JSON.parse(localStorage.getItem("products")) || [];
+
+const userOrders = orders.filter(o => o.user === user);
+
+const table = document.getElementById("orderTable");
+
+userOrders.forEach(o=>{
+
+  o.items.forEach(item => {
+
+    const product = products.find(p => p.name === item.name);
+
+    table.innerHTML += `
+      <tr>
+        <td>${o.date}</td>
+
+        <td class="product-cell">
+          <img src="${product ? product.imageSmall : ''}" class="order-img">
+          <span>${item.name}</span>
+        </td>
+
+        <td>${item.price.toLocaleString("vi-VN")} ₫</td>
+
+        <td>
+          <button class="buy-again" onclick="addToCart('${item.name}', ${item.price})">
+            Mua lại
+          </button>
+        </td>
+      </tr>
+    `;
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
