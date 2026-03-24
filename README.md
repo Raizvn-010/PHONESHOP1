@@ -7,3 +7,6 @@ Giỏ hàng: Người dùng có thể thêm, xóa hoặc chỉnh sửa số lư�
 Thanh toán (cơ bản): Mô phỏng quá trình đặt hàng.
 Điều hướng (menu): Giúp di chuyển dễ dàng giữa các trang trong website.
 Hiệu ứng giao diện: Tạo trải nghiệm mượt mà khi thao tác (hover, chuyển trang…).
+<img width="1889" height="908" alt="image" src="https://github.com/user-attachments/assets/04853031-cbcf-48b1-a6fa-209b178167f1" />
+<img width="1880" height="907" alt="image" src="https://github.com/user-attachments/assets/15577fad-ce58-4c54-ab44-9c6b22624b49" />
+
